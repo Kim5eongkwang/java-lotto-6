@@ -20,4 +20,17 @@ class ValidatorTest {
                 .hasMessage(Config.NUMBER_FORMAT_ERROR_MESSAGE);
     }
 
+    @Test
+    void 로또_금액으로_나눠떨어지지_않을때_예외처리() {
+        //given
+        int cost = Config.LOTTO_COST + 1;
+
+        //when
+
+        //then
+        Assertions.assertThatThrownBy(() -> Validator.validateDivisionByCost(cost))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Config.DIVISION_BY_COST_ERROR_MESSAGE);
+    }
+
 }
