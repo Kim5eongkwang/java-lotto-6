@@ -10,4 +10,5 @@ public class Config {
     public static final String DIVISION_BY_COST_ERROR_MESSAGE = "구입 금액이 로또 가격으로 나눠떨어지지 않습니다.";
     public static final String SEPARATOR = ",";
     public static final String NUMBER_FORMAT_ERROR_MESSAGE = "숫자 형식이 아닙니다.";
+    public static final String PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
 }
