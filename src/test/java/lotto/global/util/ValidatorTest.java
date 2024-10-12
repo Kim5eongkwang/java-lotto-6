@@ -33,4 +33,17 @@ class ValidatorTest {
                 .hasMessage(Config.DIVISION_BY_COST_ERROR_MESSAGE);
     }
 
+    @Test
+    void 당첨_번호_크기_이상_예외처리() {
+        //given
+        String string = "";
+
+        //when
+
+        //then
+        Assertions.assertThatThrownBy(() -> Validator.validateWinningNumber(string))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Config.WINNING_NUMBER_SIZE_ERROR_MESSAGE);
+    }
+
 }

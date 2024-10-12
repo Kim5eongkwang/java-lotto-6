@@ -24,5 +24,17 @@ public class Validator {
         }
     }
 
+    public static void validateWinningNumber(String string) {
+        List<String> list = List.of(string.split(Config.SEPARATOR));
+        validateWinningNumberSize(list.size());
+
+    }
+
+    private static void validateWinningNumberSize(int size) {
+        if (size != Config.WINNING_NUMBER_SIZE) {
+            throw new IllegalArgumentException(Config.WINNING_NUMBER_SIZE_ERROR_MESSAGE);
+        }
+    }
+
 
 }
