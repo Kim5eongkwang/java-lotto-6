@@ -12,7 +12,7 @@ public class LottoManager {
     private final OutputView outputView;
     private int purchasePrice;
     private final LottoGenerator lottoGenerator;
-    private Judgment judgment;
+    private final Judgment judgment;
     private WinningNumber winningNumber;
 
     public LottoManager() {
@@ -28,7 +28,11 @@ public class LottoManager {
         makeLottos();
         printLottos();
         readWinningNumbers();
+        printWinningResult();
+    }
 
+    private void printWinningResult() {
+        outputView.printWinningResult(judgment.calculateResult(winningNumber, lottos));
     }
 
     private void readWinningNumbers() {

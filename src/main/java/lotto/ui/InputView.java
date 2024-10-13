@@ -48,7 +48,6 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-
     private void validateWinningNumbers(String input) {
         Validator.validateWinningNumber(input);
     }

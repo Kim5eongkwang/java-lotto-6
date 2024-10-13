@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -17,7 +18,7 @@ public class Judgment {
     }
 
     private HashMap<Score, Integer> makeResultTable() {
-        HashMap<Score, Integer> map = new HashMap<>();
+        HashMap<Score, Integer> map = new LinkedHashMap<>();
         Stream.of(Score.values())
                 .forEach(score -> map.put(score, 0));
         return map;
