@@ -36,7 +36,7 @@ public class Validator {
         validateWinningNumberSize(list.size());
         validateWinningNumberFormat(list);
         validateWinningNumberBoundary(list);
-        validateWinningNumberDuplicate(list);
+        validateNumberDuplicate(list);
     }
 
     private static void validateWinningNumberFormat(List<String> winningNumbers) {
@@ -58,17 +58,31 @@ public class Validator {
     private static void validateWinningNumberBoundary(List<String> winningNumbers) {
         for (String winningNumber : winningNumbers) {
             int number = Integer.parseInt(winningNumber);
-            if (number < Config.MIN_LOTTO_NUMBER || number > Config.MAX_LOTTO_NUMBER) {
-                throw new IllegalArgumentException(Config.WINNING_NUMBER_BOUNDARY_ERROR_MESSAGE);
-            }
+            validateLottoNumberBoundary(number);
         }
     }
 
-    private static void validateWinningNumberDuplicate(List<String> winningNumbers) {
+    private static void validateLottoNumberBoundary(int number) {
+        if (number < Config.MIN_LOTTO_NUMBER || number > Config.MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(Config.WINNING_NUMBER_BOUNDARY_ERROR_MESSAGE);
+        }
+    }
+
+    private static void validateNumberDuplicate(List<String> winningNumbers) {
         Set<String> winningNumberSet = new HashSet<>(winningNumbers);
         if (winningNumberSet.size() != winningNumbers.size()) {
             throw new IllegalArgumentException(Config.WINNING_NUMBER_DUPLICATE_ERROR_MESSAGE);
         }
+    }
+
+    public static void validateReadBonusNumber(List<Integer> winningNumbers, String input) {
+        validateNumberFormat(input);
+        validateLottoNumberBoundary(Integer.parseInt(input));
+        List<String> list = new java.util.ArrayList<>(winningNumbers.stream()
+                .map(String::valueOf)
+                .toList());
+        list.add(input);
+        validateNumberDuplicate(list);
     }
 
 

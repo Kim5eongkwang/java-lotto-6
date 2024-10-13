@@ -7,38 +7,52 @@ import lotto.ui.InputView;
 import lotto.ui.OutputView;
 
 public class LottoManager {
-    private List<Lotto> lottos;
-    private InputView inputView;
-    private OutputView outputView;
+    private final List<Lotto> lottos;
+    private final InputView inputView;
+    private final OutputView outputView;
     private int purchasePrice;
-    private LottoGenerator lottoGenerator;
+    private final LottoGenerator lottoGenerator;
+    private Judgment judgment;
+    private WinningNumber winningNumber;
 
     public LottoManager() {
         lottos = new ArrayList<>();
         outputView = new OutputView();
         inputView = new InputView(outputView);
+        judgment = new Judgment();
         lottoGenerator = new RandomLottoGenerator();
     }
 
     public void startLottoProgram() {
         readPurchasePrice();
         makeLottos();
-        printLottos(lottos);
+        printLottos();
+        readWinningNumbers();
+
+    }
+
+    private void readWinningNumbers() {
+        List<Integer> winningNumbers = inputView.readWinningNumbers();
+        int bonusNumber = inputView.readBonusNumber(winningNumbers);
+
+        winningNumber = new WinningNumber(winningNumbers, bonusNumber);
     }
 
     private void readPurchasePrice() {
         purchasePrice = inputView.readPurchasePrice();
     }
 
-    private void printLottos(List<Lotto> lottos) {
-        int purchaseSize = purchasePrice / Config.LOTTO_SIZE;
-        outputView.printHowManyPurchase(purchaseSize);
+    private void printLottos() {
+        outputView.printHowManyPurchase(getPurchaseSize());
         outputView.printLottos(lottos);
     }
 
+    private int getPurchaseSize() {
+        return purchasePrice / Config.LOTTO_SIZE;
+    }
+
     private void makeLottos() {
-        int purchaseSize = purchasePrice / Config.LOTTO_SIZE;
-        for (int i = 0; i < purchaseSize; i++) {
+        for (int i = 0; i < getPurchaseSize(); i++) {
             lottos.add(lottoGenerator.getLotto());
         }
     }

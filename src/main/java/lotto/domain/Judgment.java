@@ -1,8 +1,27 @@
 package lotto.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Judgment {
+
+    public HashMap<Score, Integer> calculateResult(WinningNumber winningNumber, List<Lotto> lottos) {
+        HashMap<Score, Integer> map = makeResultTable();
+        for (Lotto lotto : lottos) {
+            Score score = getScore(winningNumber, lotto);
+            int value = map.get(score);
+            map.replace(score, ++value);
+        }
+        return map;
+    }
+
+    private HashMap<Score, Integer> makeResultTable() {
+        HashMap<Score, Integer> map = new HashMap<>();
+        Stream.of(Score.values())
+                .forEach(score -> map.put(score, 0));
+        return map;
+    }
 
     public Score getScore(WinningNumber winningNumber, Lotto myLotto) {
         int correct = getCorrect(winningNumber, myLotto);
@@ -49,5 +68,6 @@ public class Judgment {
 
         return correct;
     }
+
 
 }

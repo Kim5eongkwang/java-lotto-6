@@ -23,6 +23,13 @@ public class OutputView {
         }
     }
 
+    public void printReadWinningNumbersMessage() {
+        println(Config.READ_WINNING_NUMBERS_MESSAGE);
+    }
+    public void printReadBonusNumberMessage() {
+        println(Config.READ_BONUS_NUMBER_MESSAGE);
+    }
+
     private void println(String message) {
         System.out.println(message);
     }

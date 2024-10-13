@@ -72,6 +72,20 @@ class ValidatorTest {
 
     }
 
+    @Test
+    void 보너스_번호_중복_예외처리() {
+        //given
+        String input = "1";
+        List<Integer> winningNumbers = new ArrayList<>();
+        winningNumbers.add(1);
+        //when
+
+        //then
+        Assertions.assertThatThrownBy(() -> Validator.validateReadBonusNumber(winningNumbers, input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Config.WINNING_NUMBER_DUPLICATE_ERROR_MESSAGE);
+    }
+
     private String makeOutBoundaryWinningNumber() {
         int outBoundary = Config.MAX_LOTTO_NUMBER;
         List<String> list = new ArrayList<>();

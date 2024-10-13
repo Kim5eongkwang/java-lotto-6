@@ -15,4 +15,6 @@ public class Config {
     public static final String WINNING_NUMBER_BOUNDARY_ERROR_MESSAGE = "당첨 번호의 범위가 잘못 되었습니다.";
     public static final String WINNING_NUMBER_DUPLICATE_ERROR_MESSAGE = "중복된 당첨 번호가 있습니다.";
     public static final String HOW_MANY_PURCHASE_MESSAGE = "개를 구매했습니다.";
+    public static final String READ_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+    public static final String READ_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 }
