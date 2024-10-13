@@ -23,8 +23,7 @@ public class InputView {
     }
 
     private void validateReadPurchasePrice(String input) {
-        Validator.validateWinningNumber(input);
-        Validator.validateDivisionByCost(Integer.parseInt(input));
+        Validator.validatePurchasePrice(input);
     }
 
 }
