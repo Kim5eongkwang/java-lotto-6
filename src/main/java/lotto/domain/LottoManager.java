@@ -1,7 +1,9 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import lotto.global.constant.Config;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
@@ -29,6 +31,7 @@ public class LottoManager {
         printLottos();
         readWinningNumbers();
         printWinningResult();
+        printEarningRate();
     }
 
     private void printWinningResult() {
@@ -52,7 +55,7 @@ public class LottoManager {
     }
 
     private int getPurchaseSize() {
-        return purchasePrice / Config.LOTTO_SIZE;
+        return purchasePrice / Config.LOTTO_COST;
     }
 
     private void makeLottos() {
@@ -61,5 +64,15 @@ public class LottoManager {
         }
     }
 
+    private void printEarningRate() {
+        HashMap<Score, Integer> result = judgment.calculateResult(winningNumber, lottos);
+        int earningPrice = 0;
+        for (Entry<Score, Integer> entry : result.entrySet()) {
+            earningPrice += entry.getValue() * entry.getKey().getPrize();
+        }
+
+        String earningRate = String.format("%.1f", (double) earningPrice / purchasePrice * 100);
+        outputView.printEarningRate(earningRate);
+    }
 
 }

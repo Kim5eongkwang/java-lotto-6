@@ -39,7 +39,22 @@ public class OutputView {
         DecimalFormat formatter = new DecimalFormat("###,###");
         int correct = 3;
         for (Entry<Score, Integer> entry : result.entrySet()) {
-            println(correct++ + "개 일치 (" + formatter.format(entry.getKey().getPrize()) + ") - " + entry.getValue());
+            if (entry.getKey() == Score.NO) {
+                continue;
+            }
+            if (entry.getKey() == Score.THIRD) {
+                println(correct + "개 일치 (" + formatter.format(entry.getKey().getPrize()) + "원) - " + entry.getValue()
+                        + "개");
+                continue;
+            }
+            if (entry.getKey() == Score.SECOND) {
+                println(correct++ + "개 일치, 보너스 볼 일치 (" + formatter.format(entry.getKey().getPrize()) + "원) - "
+                        + entry.getValue() + "개");
+                continue;
+            }
+
+            println(correct++ + "개 일치 (" + formatter.format(entry.getKey().getPrize()) + "원) - " + entry.getValue()
+                    + "개");
         }
     }
 
@@ -47,7 +62,7 @@ public class OutputView {
         System.out.println(message);
     }
 
-    private void print(String message) {
-        System.out.println(message);
+    public void printEarningRate(String rate) {
+        println("총 수익률은 " + rate + "%입니다.");
     }
 }

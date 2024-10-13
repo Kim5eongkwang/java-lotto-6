@@ -30,12 +30,14 @@ public class InputView {
     }
 
     public List<Integer> readWinningNumbers() {
+        outputView.printReadWinningNumbersMessage();
         String input = readLine();
         validateWinningNumbers(input);
         return getWinningNumberList(input);
     }
 
     public int readBonusNumber(List<Integer> winningNumbers) {
+        outputView.printReadBonusNumberMessage();
         String input = readLine();
         Validator.validateReadBonusNumber(winningNumbers, input);
         return Integer.parseInt(input);
