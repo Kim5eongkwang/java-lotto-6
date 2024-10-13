@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import lotto.global.util.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,9 +14,9 @@ public class Lotto {
 
     // validate 클래스로 따로 빼두기
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        Validator.validateLottoNumber(numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.toList()));
     }
 
     public List<Integer> getLottoNumbers() {

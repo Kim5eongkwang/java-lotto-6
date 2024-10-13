@@ -17,4 +17,5 @@ public class Config {
     public static final String HOW_MANY_PURCHASE_MESSAGE = "개를 구매했습니다.";
     public static final String READ_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     public static final String READ_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    public static final String LOTTO_SIZE_ERROR_MESSAGE = "[ERROR] 로또 크기가 잘못되었습니다.";
 }

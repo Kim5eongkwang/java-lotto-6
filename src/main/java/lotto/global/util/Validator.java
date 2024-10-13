@@ -7,6 +7,8 @@ import lotto.global.constant.Config;
 
 public class Validator {
     public static void validateLottoNumber(List<String> lottoNumbers) {
+        validateNumberDuplicate(lottoNumbers);
+        validateLottoNumberSize(lottoNumbers.size());
         for (String lottoNumber : lottoNumbers) {
             validateNumberFormat(lottoNumber);
         }
@@ -46,6 +48,12 @@ public class Validator {
             } catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException(Config.WINNING_NUMBER_FORMAT_ERROR_MESSAGE);
             }
+        }
+    }
+
+    private static void validateLottoNumberSize(int size) {
+        if (size != Config.LOTTO_SIZE) {
+            throw new IllegalArgumentException(Config.LOTTO_SIZE_ERROR_MESSAGE);
         }
     }
 
